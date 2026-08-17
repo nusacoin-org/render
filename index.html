@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ta-Render — Gemini AI Render Prompter</title>
+    <!-- Pastikan path ke style.css tepat -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div class="logo-badge">🏛️ Ta-Render</div>
+            <h1>Gemini AI Render Prompter</h1>
+            <p class="subtitle">Unggah screenshot SketchUp Anda dan dapatkan prompt render arsitektur tingkat profesional secara otomatis.</p>
+        </header>
+
+        <main class="card">
+            
+            <div class="form-group">
+                <label class="section-label">Gaya Visual Utama</label>
+                <div class="track-toggle">
+                    <button type="button" id="btnRendering" class="track-btn active">
+                        <span class="icon">🎨</span>
+                        <span class="text">
+                            <strong>Rendering Style</strong>
+                            <small>CGI / Engine (V-Ray, D5, Unreal)</small>
+                        </span>
+                    </button>
+                    <button type="button" id="btnPhotography" class="track-btn">
+                        <span class="icon">📷</span>
+                        <span class="text">
+                            <strong>Photography Style</strong>
+                            <small>Real Camera (Iwan Baan, Editorial)</small>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="section-label">1. Screenshot Model SketchUp</label>
+                <div class="upload-zone" id="dropZone">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    
+                    <div id="uploadPlaceholder" class="upload-placeholder">
+                        <div class="upload-icon-wrapper">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <p class="upload-title">Klik atau Drop Screenshot SketchUp ke Sini</p>
+                        <p class="upload-hint">Mendukung format PNG, JPG, WebP</p>
+                    </div>
+
+                    <div id="previewContainer" class="preview-container hidden">
+                        <!-- 'src' kosong diberi class 'hidden' awal agar tidak broken-image -->
+                        <img id="imagePreview" src="https://iili.io/C6zKFQp.th.png" alt="Preview Screenshot" class="hidden">
+                        <div class="preview-overlay">
+                            <button type="button" id="changeImgBtn" class="change-img-btn">🔄 Ganti Gambar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="renderType">Scene Type</label>
+                    <div class="select-wrapper">
+                        <select id="renderType">
+                            <option value="exterior">Exterior House Façade</option>
+                            <option value="interior">Interior Room</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="designStyle">Design Style</label>
+                    <div class="select-wrapper">
+                        <select id="designStyle">
+                            <option value="Modern Minimalist">Modern Minimalist</option>
+                            <option value="Scandinavian Warm">Scandinavian Warm</option>
+                            <option value="Industrial Loft">Industrial Loft</option>
+                            <option value="Tropical Luxury">Tropical Luxury</option>
+                            <option value="Japandi Style">Japandi Style</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lightingPreset">Lighting Preset</label>
+                    <div class="select-wrapper">
+                        <select id="lightingPreset"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="outputPreset">Output Preset / Photographer Style</label>
+                    <div class="select-wrapper">
+                        <select id="outputPreset"></select>
+                    </div>
+                </div>
+            </div>
+
+            <button id="generateBtn" class="btn-generate">
+                <span>⚡ Generate Gemini Prompt</span>
+            </button>
+
+            <div class="form-group result-group">
+                <div class="result-header">
+                    <label for="resultPrompt">Hasil Generated Prompt</label>
+                    <button id="copyBtn" class="btn-copy">📋 Salin Prompt</button>
+                </div>
+                <textarea id="resultPrompt" readonly placeholder="Prompt Gemini akan secara otomatis dibuat di sini setelah Anda menekan tombol Generate..."></textarea>
+            </div>
+
+        </main>
+        
+        <footer class="app-footer">
+            <p>Ta-Render &copy; 2026 — Optimized for Gemini AI Architectural Rendering</p>
+        </footer>
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
